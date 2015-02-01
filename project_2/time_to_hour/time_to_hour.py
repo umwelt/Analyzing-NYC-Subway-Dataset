@@ -1,9 +1,11 @@
 import pandas
+import time as tmx
+
 
 def time_to_hour(time):
     '''
     Given an input variable time that represents time in the format of:
-    00:00:00 (hour:minutes:seconds)
+    "00:00:00" (hour:minutes:seconds)
     
     Write a function to extract the hour part from the input variable time
     and return it as an integer. For example:
@@ -14,7 +16,7 @@ def time_to_hour(time):
     Please return hour as an integer.
     '''
     
-    hour = # your code here
+    hour = tmx.strptime(time, "%H:%M:%S")[3]
     return hour
 
 if __name__ == "__main__":
