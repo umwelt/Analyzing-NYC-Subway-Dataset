@@ -1,6 +1,8 @@
 import csv
 import pandas as pd
 
+filenames = ['turnstile_110528.txt', 'turnstile_110604.txt']
+
 def fix_turnstile_data(filenames):
     '''
     Filenames is a list of MTA Subway turnstile text files. A link to an example
@@ -32,7 +34,23 @@ def fix_turnstile_data(filenames):
     https://www.dropbox.com/s/074xbgio4c39b7h/solution_turnstile_110528.txt
     '''
     for name in filenames:
-        # your code here
+        tidedDataName = "updated_" + name
+        originalData = open(name, 'r')
+        tidedDataFile = open(tidedDataName, 'w')
+        tidedData = csv.writer(tidedDataFile)
+        csvOriginalData = csv.reader(originalData)
+        for row in csvOriginalData:
+            baseData = row[0:3]
+            date = row[3::5]
+            initHour = row[4::5]
+            typeTicket = row[5::5]
+            initCode = row[6::5]
+            endCode = row[7::5]
+            for entry in zip(date, initHour, typeTicket, initCode, endCode):
+                tidedData.writerow(baseData + list(entry))
+        originalData.close()
+        tidedDataFile.close()
+        
 
 if __name__ == "__main__":
     input_files = ['turnstile_110528.txt', 'turnstile_110604.txt']
