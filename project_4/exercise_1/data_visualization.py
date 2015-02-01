@@ -29,7 +29,12 @@ def plot_weather_data(turnstile_weather):
     of the actual data in the turnstile_weather dataframe
     '''
 
-    plot = # your code here
+    turnstile_weather = turnstile_weather.rename(columns= {'Unnamed: 0':'i'  })
+ 
+    sql = '''SELECT * FROM turnstile_weather WHERE `Hour` > 9 AND `Hour` < 18 '''
+    df = sqldf(sql,locals())
+    plot = ggplot(df,aes('ENTRIESn_hourly','precipi', color='Hour')) + \
+    geom_point(alpha = 0.2)
     return plot
 
 
