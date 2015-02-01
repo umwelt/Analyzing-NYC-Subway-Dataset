@@ -1,5 +1,6 @@
-import pandas as pd
+import pandas
 import pandasql
+
 
 def max_temp_aggregate_by_fog(filename):
     '''
@@ -20,15 +21,13 @@ def max_temp_aggregate_by_fog(filename):
     You can see the weather data that we are passing in below:
     https://www.dropbox.com/s/7sf0yqc9ykpq3w8/weather_underground.csv
     '''
-    weather_data = pd.read_csv(filename)
+    weather_data = pandas.read_csv(filename)
 
-    q = """
-    Your query here
-    """
+    q = 'select fog, max(cast (maxtempi as integer)) from weather_data group by fog'
     
     #Execute your SQL command against the pandas frame
-    rainy_days = pandasql.sqldf(q.lower(), locals())
-    return rainy_days
+    foggy_days = pandasql.sqldf(q.lower(), locals())
+    return foggy_days
 
 
 if __name__ == "__main__":
