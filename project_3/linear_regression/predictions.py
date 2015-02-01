@@ -1,6 +1,6 @@
-import ggplot
 import numpy as np
 import pandas
+from ggplot import *
 
 """
 In this question, you need to:
@@ -151,3 +151,5 @@ def plot_cost_history(alpha, cost_history):
    })
    return ggplot(cost_df, aes('Iteration', 'Cost_History')) + \
       geom_point() + ggtitle('Cost History for alpha = %.3f' % alpha )
+
+
