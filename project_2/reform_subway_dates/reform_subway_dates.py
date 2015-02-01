@@ -1,9 +1,9 @@
 import datetime
-
+import time as tmx
 def reformat_subway_dates(date):
     '''
     The dates in our subway data are formatted in the format month-day-year.
-    The dates in our weather underground data are formatted year-month-date.
+    The dates in our weather underground data are formatted year-month-day.
     
     In order to join these two data sets together, we'll want the dates formatted
     the same way.  Write a function that takes as its input a date in the MTA Subway
@@ -15,7 +15,14 @@ def reformat_subway_dates(date):
     http://docs.python.org/2/library/datetime.html#datetime.datetime.strptime
     '''
 
-    date_formatted = # your code here
+    temp = tmx.strptime(date, "%m-%d-%y")
+    temp1 = temp[0]
+    temp2 = temp[1]
+    temp3 = temp[2]
+    
+    dt = datetime.datetime(temp[0], temp[1], temp[2])
+
+    date_formatted = dt.strftime("%Y-%m-%d")
     return date_formatted
 
 if __name__ == "__main__":
