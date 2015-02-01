@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas
 import pandasql
 
 filename = "weather_underground.csv"
@@ -22,7 +22,7 @@ def max_temp_aggregate_by_fog(filename):
     You can see the weather data that we are passing in below:
     https://www.dropbox.com/s/7sf0yqc9ykpq3w8/weather_underground.csv
     '''
-    weather_data = pd.read_csv(filename)
+    weather_data = pandas.read_csv(filename)
 
     q = "SELECT count(*) FROM weather_data WHERE rain>0"
 
