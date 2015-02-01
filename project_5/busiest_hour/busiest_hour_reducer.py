@@ -1,4 +1,9 @@
 import sys
+import logging
+
+from util import reducer_logfile
+logging.basicConfig(filename=reducer_logfile, format='%(message)s',
+                    level=logging.INFO, filemode='w')
 
 def reducer():
     '''
@@ -28,6 +33,27 @@ def reducer():
     old_key = None
     datetime = ''
 
-    # your code here
-    
+    for line in sys.stdin:
+
+        data = line.strip().split('\t')
+
+        if len(data) != 4:
+            continue
+
+        this_key, count, date, time  = data
+        count = float(count)
+
+        if old_key and old_key != this_key:
+            print "{0}\t{1}\t{2}".format(old_key, datetime, max_entries)
+            max_entries = 0
+            datetime = ''
+
+        old_key = this_key
+        if count >= max_entries:
+            max_entries = count
+            datetime = str(date) + ' ' + str(time)
+
+    if old_key != None:
+        print "{0}\t{1}\t{2}".format(old_key, datetime, max_entries)
+        logging.info("{0}\t{1}\t{2}".format(old_key, datetime, max_entries))
 reducer()

@@ -13,6 +13,10 @@ def mapper():
 
 
     for line in sys.stdin:
-        # your code here
+        data = line.strip().split(",")
+        if len(data) == 22 and data[6] == 'ENTRIESn_hourly':
+            continue
+               
+        print "{0}\t{1}\t{2}\t{3}".format(data[1],data[6],data[2],data[3])
 
 mapper()
