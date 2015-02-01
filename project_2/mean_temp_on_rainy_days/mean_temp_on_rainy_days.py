@@ -1,6 +1,8 @@
 import pandas as pd
 import pandasql
 
+filename = "weather_underground.csv"
+
 def min_temperature_on_rainy_days(filename):
     '''
     This function should run a SQL query on a dataframe of
@@ -20,9 +22,9 @@ def min_temperature_on_rainy_days(filename):
     '''
     weather_data = pd.read_csv(filename)
 
-    q = """
-    your query here
-    """
+        
+    q = "select avg(cast (mintempi as integer)) from weather_data " \
+        "where cast(mintempi as integer) > 55 and cast (rain as integer) == 1"
     
     #Execute your SQL command against the pandas frame
     mean_temp_weekends = pandasql.sqldf(q.lower(), locals())
