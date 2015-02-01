@@ -35,6 +35,10 @@ def get_hourly_entries(df):
 
     '''
     #your code here
+    df['ENTRIESn'].fillna(1)
+
+    df['ENTRIESn_hourly'] = df['ENTRIESn'] - df['ENTRIESn'].shift(periods=1) 
+    df = df.fillna(1)
     return df
 
 if __name__ == "__main__":
