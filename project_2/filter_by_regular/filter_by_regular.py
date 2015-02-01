@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas
 
 def filter_by_regular(filename):
     '''
@@ -18,8 +18,10 @@ def filter_by_regular(filename):
     2,A002,R051,02-00-00,05-01-11,08:00:00,REGULAR,3144353,1088177
     '''
     
-    turnstile_data = # your code here
-    # more of your code here
+    turnstile_data = pandas.read_csv(filename)
+    turnstile_data = turnstile_data.ix[turnstile_data['DESCn'] == 'REGULAR',]
+
+
     return turnstile_data
 
 
